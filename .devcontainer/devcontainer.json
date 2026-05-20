@@ -1,0 +1,47 @@
+{
+  "name": "Nebius DDP Training Environment",
+
+  // Base image: Ubuntu 22.04 with common tools
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+
+  // VS Code extensions auto-installed in the Codespace
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "redhat.vscode-yaml",
+        "GitHub.copilot"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+
+  // Features: Docker-in-Docker and kubectl pre-installed
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "dockerDashComposeVersion": "v2"
+    },
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+      "version": "latest",
+      "helm": "none",
+      "minikube": "none"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    }
+  },
+
+  // Run once after the container is created
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  // Forward no ports by default (sky and kubectl use CLI only)
+  "forwardPorts": [],
+
+  // Run as non-root user
+  "remoteUser": "vscode"
+}
