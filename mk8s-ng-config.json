@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "id": "mk8snodegroup-e00je8kvk2sy60qjec",
+    "parent_id": "mk8scluster-e00tkktzk7hv4ecx1c",
+    "name": "gpu-nodes",
+    "resource_version": "1",
+    "created_at": "2026-05-21T10:22:06Z",
+    "updated_at": "2026-05-21T10:22:06Z"
+  },
+  "spec": {
+    "version": "1.33",
+    "fixed_node_count": "2",
+    "template": {
+      "resources": {
+        "platform": "gpu-l40s-a",
+        "preset": "1gpu-8vcpu-32gb"
+      },
+      "boot_disk": {
+        "size_gibibytes": "100",
+        "block_size_bytes": "4096",
+        "type": "NETWORK_SSD"
+      },
+      "gpu_settings": {
+        "drivers_preset": "cuda13.0"
+      },
+      "os": "ubuntu24.04",
+      "network_interfaces": [
+        {
+          "subnet_id": "vpcsubnet-e00wtfdjna6ce3nyqg"
+        }
+      ],
+      "cloud_init_user_data": "users:\n - name: daniel\n   sudo: ALL=(ALL) NOPASSWD:ALL\n   shell: /bin/bash\n   ssh_authorized_keys:\n    - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPqwkuiDc64k1Xe+ZlN9jo6nyePjhjnLtmwrhUYDBrG1 ddp-nodes",
+      "service_account_id": "serviceaccount-e00hbzx5nge1b217nh",
+      "preemptible": {},
+      "reservation_policy": {}
+    }
+  }
+}
