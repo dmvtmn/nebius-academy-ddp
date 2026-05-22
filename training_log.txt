@@ -1,0 +1,1 @@
+[33mTailing logs of job 1 on cluster 'ddp-cluster'...[0m
